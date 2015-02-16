@@ -29,7 +29,7 @@ class GameServer(object):
 			return False
 
 class TF2Server(GameServer):
-	launch_command = ["C:/Steam/tf2/srcds.exe"]
+	launch_command = ["../steamcmd/tf2/srcds_run"]
 	launch_params = '-console -game tf +sv_pure 1 +map ctf_2fort +maxplayers 24 +rcon_password "password"'.split(" ")
 	def sendMessage(self, message):
 		self.subprocess.communicate(message)
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
 
 	myServer = TF2Server()
-	
+
 	while(True):
 		output, error = myServer.subprocess.communicate()
 		if output != None:
