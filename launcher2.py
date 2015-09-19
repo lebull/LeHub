@@ -1,6 +1,8 @@
 import async_subprocess
 from subprocess import PIPE
 
+import commands
+
 class GameServer(object):
 
 	launch_command = "python echo.py".split(" ")
@@ -29,8 +31,10 @@ class GameServer(object):
 			return False
 
 class TF2Server(GameServer):
-	launch_command = ["../steamcmd/tf2/srcds_run"]
+	#launch_command = ["../steamcmd/tf2/srcds_run"]
+	launch_command = commands.linux.TF2.launch
 	launch_params = '-console -game tf +sv_pure 1 +map ctf_2fort +maxplayers 24 +rcon_password "password"'.split(" ")
+
 	def sendMessage(self, message):
 		self.subprocess.communicate(message)
 
